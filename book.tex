@@ -1,0 +1,43 @@
+\documentclass[11pt]{memoir}
+
+\input{structure}
+\makeindex
+\idxlayout{columns=3}
+
+\includeonly{
+    chapters/introduction,
+    chapters/culture,
+}
+
+\title{A Programmer's Introduction to Mathematics}
+\author{Jeremy Kun}
+
+\begin{document}
+
+\input{titlepage.tex}
+\newpage
+\input{copyright.tex}
+\newpage
+\input{dedication.tex}
+\newpage
+\input{thanks.tex}
+\newpage
+
+\begin{KeepFromToc}
+\pagenumbering{gobble}
+\tableofcontents
+\end{KeepFromToc}
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{0}
+
+\include{chapters/introduction}
+\include{chapters/culture}
+
+\newpage
+\input{about.tex}
+\newpage
+
+\printindex
+
+\end{document}

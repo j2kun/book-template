@@ -1,0 +1,199 @@
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{wrapfig}
+\usepackage{blkarray}
+\usepackage{exercise}
+\usepackage{chngcntr}
+\usepackage{relsize}
+\usepackage{caption}
+\usepackage{makeidx}
+\usepackage[font=footnotesize]{idxlayout}
+
+\usepackage{fancyvrb}  % improved verbatim environment
+\usepackage[tt=false]{libertine} % Use the Libertine font
+\usepackage{microtype} % Improves character and word spacing
+\usepackage{tikz} % Required for drawing custom shapes
+\definecolor[named]{color01}{rgb}{.2,.4,.6} % Color used in the title page
+
+\usepackage[unicode=true,bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,breaklinks=false,pdfborder={0 0 1},backref=section,colorlinks=false]{hyperref}
+
+\usepackage[mathscr]{euscript}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{corollary*}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{model}[theorem]{Model}
+\newtheorem{remark}[theorem]{Remark}
+\counterwithin{Exercise}{chapter}
+
+
+% shorthand data macros
+
+\newcommand{\webpageurl}{\url{pimbook.org}}
+\newcommand{\footnoteurl}[1]{{\tiny \url{#1}}}
+
+% Math operators
+
+\DeclareMathOperator{\degree}{deg}
+\DeclareMathOperator{\im}{im}
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}}
+
+% the \sim to use in the denominator of a quotient to correct spacing
+\newcommand{\fracsim}{\mathord{\sim}}
+
+
+%	PAPER, MARGIN AND HEADER/FOOTER SIZES
+
+
+\setstocksize{9.69in}{7.44in} % Paper size
+\settrimmedsize{\stockheight}{\stockwidth}{*} % No trims
+\setlrmarginsandblock{1in}{1in}{*} % Left/right margins
+\setulmarginsandblock{0.625in}{1in}{*} % Top/bottom margins
+\setheadfoot{14pt}{12pt} % Header/footer height
+\setheaderspaces{*}{8pt}{*} % Extra header space
+
+
+%	FOOTNOTE CUSTOMIZATION
+
+\renewcommand{\foottextfont}{\footnotesize} % Font settings for footnotes
+\setlength{\footmarkwidth}{-.1em} % Space between the footnote number and the text
+\setlength{\footmarksep}{.1em} % Space between multiple footnotes on the same page
+\renewcommand*{\footnoterule}{} % Remove the rule above the first footnote
+\setlength{\skip\footins}{1\onelineskip} % Space between the body text and the footnote
+
+
+%	HEADER AND FOOTER FORMATS
+
+% needed for chapter names
+\let\Chaptermark\chaptermark{}
+\def\chaptermark#1{\def\Chaptername{#1}\Chaptermark{#1}}
+
+\makepagestyle{mio} % Define a new custom page style
+\setlength{\headwidth}{\textwidth} % Header the same width as the text
+%\makeheadrule{mio}{\textwidth}{0.1mm} % Header rule height
+%\makeoddhead{mio}{}{\scriptsize{\Chaptername}}{\scriptsize{\thepage}} % Header specification
+%\makeevenhead{mio}{\scriptsize{\thepage}}{\scriptsize{\thetitle}}{} % Header specification
+\makeoddhead{mio}{}{}{\scriptsize{\thepage}} % Header specification
+\makeevenhead{mio}{\scriptsize{\thepage}}{}{} % Header specification
+\pagestyle{mio} % Set the page style to the custom style defined above
+
+
+%	PART FORMAT
+
+
+\renewcommand{\partnamefont}{\centering\Huge} % Part name font specification
+\renewcommand{\partnumfont}{\Huge} % Part number font specification
+\renewcommand{\parttitlefont}{\centering\scshape} % Part title font specification
+\renewcommand{\beforepartskip}{\null\vskip.618\textheight} % Whitespace above the part heading
+
+
+%	CHAPTER FORMAT
+
+\makechapterstyle{Tufte}{ % Define a new chapter style
+\renewcommand{\chapterheadstart}{\null{}\vskip3.5\onelineskip} % Whitespace before the chapter starts
+\renewcommand{\printchaptername}{\chaptername} % "Chapter" text font specification
+\renewcommand{\printchapternum}{\thechapter{}\\} % Chapter number font specification
+\renewcommand{\afterchapternum}{} % Space between the chapter number and text
+\renewcommand{\printchaptertitle}[1]{ % Chapter title font specification
+\raggedright{}
+\LARGE{##1}}
+\renewcommand{\afterchaptertitle}{
+\vskip3.5\onelineskip{}
+}}
+\chapterstyle{Tufte} % Set the chapter style to the custom style defined above
+
+% SECTION FORMAT
+
+\setsecheadstyle{\sethangfrom{\noindent ##1}\raggedright\Large} % Section title font specification
+\setbeforesecskip{\onelineskip} % Whitespace before the section
+\setaftersecskip{.7\onelineskip} % Whitespace after the section
+
+% SUBSECTION FORMAT
+
+\setsubsecheadstyle{\sethangfrom{\noindent  ##1}\raggedright\large} % Subsection title font specification
+\setbeforesubsecskip{-.5\onelineskip} % Whitespace before the subsection
+\setaftersubsecskip{.2\onelineskip} % Whitespace after the subsection
+
+
+% SUBSUBSECTION FORMAT
+
+\setsubsubsecheadstyle{\sethangfrom{\noindent ##1}\raggedright} % Subsubsection title font specification
+\setbeforesubsubsecskip{-.5\onelineskip} % Whitespace before the subsubsection
+\setaftersubsubsecskip{.1\onelineskip} % Whitespace after the subsubsection
+
+
+%	CAPTION FORMAT
+% Caption font specification
+\captiontitlefont{\itshape\footnotesize} % chktex 6
+% "Caption" text font specification
+\captionnamefont{\footnotesize}
+
+%	QUOTATION ENVIRONMENT FORMAT
+
+
+\renewenvironment{quotation}
+{\par\leftskip=1em\vskip.5\onelineskip\em} % chktex 6
+{\par\vskip.5\onelineskip}
+
+
+%	QUOTE ENVIRONMENT FORMAT
+
+
+\renewenvironment{quote}
+{\list{}{\em\leftmargin=1em}\item[]}{\endlist\relax} % chktex 6
+
+
+% Exercise format
+
+\renewcommand\ExerciseListName{}
+\renewcommand{\ExerciseListHeader}{\ExerciseHeaderNB{}\hspace{8pt}}
+
+%	MISCELLANEOUS DOCUMENT SPECIFICATIONS
+
+
+\setlength{\parindent}{1em} % Paragraph indentation
+
+\midsloppy{} % Fewer overfull lines - used in the memoir class and allows a setting somewhere between \fussy and \sloppy
+
+\checkandfixthelayout{} % Tell memoir to implement the above
+
+
+%  Listings configuration
+\definecolor{dkgreen}{rgb}{0,0.5,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\newlength{\listingindent}                %declare a new length
+\setlength{\listingindent}{\parindent} %make it a fixed version of \parindent
+\lstset{frame=lrtb,
+  language=Python,
+  aboveskip=10pt,
+  belowskip=3mm,
+  framesep=1pt,
+  xleftmargin=17pt,
+  framexleftmargin=17pt,
+  xrightmargin=5pt,
+  framexrightmargin=5pt,
+  framextopmargin=10pt,
+  framexbottommargin=10pt,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\scriptsize\ttfamily},
+  numbers=none,
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{dkgreen},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
